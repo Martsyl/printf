@@ -13,8 +13,7 @@ int print_handle(const char *str, int *id, va_list args, char buffer[])
 	int i, get_len = 0;
 
 	mart_alli struct_type[] = {
-		{'c', c_print}, {'s', str_print}, {'%', prcnt_print},
-		{'i', int_print}, {'d', int_print}
+		{'c', c_print}, {'s', str_print}, {'%', prcnt_print}
 	};
 	for (i = 0; struct_type[i].mart != '\0'; i++)
 		if (str[*id] == struct_type[i].mart)
