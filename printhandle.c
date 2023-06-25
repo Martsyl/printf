@@ -1,32 +1,43 @@
+#include <stdarg.h>
+#include <unistd.h>
 #include "main.h"
+#include <stdio.h>
 /**
- * print_handle-  handles the printing
- * @str:  string to be print
- * @args: list of arguments
- * @id: pointer  indicator
- * @buffer: array of buffers
- * Return: 1 or 2;
+ * c_handle - prints char
+ * @count: pointer
+ * @list: arguments
+ * Return: none
  */
-int print_handle(const char *str, int *id, va_list args, char buffer[])
+void c_handle(va_list list, int *count)
 {
-	int printchars = -1;
-	int i, get_len = 0;
+	char prnt_char = va_arg(list, int);
 
-	mart_alli struct_type[] = {
-		{'c', c_print}, {'s', str_print}, {'%', prcnt_print}
-	};
-	for (i = 0; struct_type[i].mart != '\0'; i++)
-		if (str[*id] == struct_type[i].mart)
-			return (struct_type[i].alli(args, buffer));
-	if (struct_type[i].mart == '\0')
+	write(1, &prnt_char, 1);
+	(*count)++;
+}
+/**
+ * str_handle - prints str
+ * @count: pointer
+ * @list: args
+ */
+void str_handle(va_list list, int *count)
+{
+	const char *prnt_str = va_arg(list, const char *);
+	int get_len = 0;
+
+	while (prnt_str[get_len] != '\0')
 	{
-		if (str[*id] == '\0')
-			return (-1);
-		get_len += write(1, "%%", 1);
-		if (str[*id - 1] == ' ')
-			get_len += write(1, " ", 1);
-		get_len += write(1, &str[*id], 1);
-		return (get_len);
+		get_len++;
+		(*count)++;
 	}
-	return (printchars);
+	write(1, prnt_str, get_len);
+}
+/**
+ * prcnt_handle - prints %
+ * @count: pointer
+ */
+void prcnt_handle(int *count)
+{
+	write(1, "%", 1);
+	(*count)++;
 }

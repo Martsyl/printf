@@ -1,55 +1,47 @@
 #include "main.h"
-
-void buffprint(char buff[], int *buff_get);
 /**
- * _printf - Almighty printf
- * @format: format
- * @... args
- * Return: printed chars
+ * _printf - cheeeky printf
+ * @format: str format
+ * Return: num of chars
  */
 int _printf(const char *format, ...)
 {
+	int count = 0;
 	va_list list;
-	char buffersize[BUFFER_SIZE];
-	int buff_get = 0;
-	int printed_chars = 0;
-	int printed = 0;
-	int i;
 
-	if (format == NULL)
-		return (-1);
 	va_start(list, format);
 
-	for (i = 0; format && format[i] != '\0'; i++)
+	while (*format != '\0')
 	{
-		if (format[i] != '%')
+		if (*format == '%')
 		{
-			buffersize[buff_get++] = format[i];
-			if (buff_get == BUFFER_SIZE)
-				buffprint(buffersize, &buff_get);
-			printed_chars++;
+			format++;
+			switch (*format)
+			{
+				case 'c':
+					c_handle(list, &count);
+					break;
+				case 's':
+					str_handle(list, &count);
+					break;
+				case '%':
+					prcnt_handle(&count);
+					break;
+				default:
+					write(1, "%", 1);
+					write(1, format, 1);
+					count += 2;
+					break;
+			}
 		}
 		else
 		{
-			buffprint(buffersize, &buff_get);
-			printed = print_handle(format, &i, list, buffersize);
-			if (printed == -1)
-				return (-1);
-			printed_chars += printed;
+			write(1, format, 1);
+			count++;
 		}
+		format++;
+
 	}
-	buffprint(buffersize, &buff_get);
 	va_end(list);
-	return (printed_chars);
-}
-/**
- * buffprint-check code
- * @buffer: array
- * @buff_get: gets space from user
- */
-void buffprint(char buffer[], int *buff_get)
-{
-	if (*buff_get > 0)
-		write(1, &buffer[0], *buff_get);
-	*buff_get = 0;
+	return (count);
 }
