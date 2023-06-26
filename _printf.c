@@ -1,8 +1,47 @@
-#include "main.h"
+#include"main.h"
 /**
- * _printf - cheeeky printf
- * @format: str format
- * Return: num of chars
+ *c_handle-printschar
+ *@count:pointer
+ *@list:arguments
+ *Return:none
+ */
+void c_handle(va_list list,int*count)
+{
+	char prnt_char = va_arg(list,int);
+
+	write(1, &prnt_char ,1);
+	(*count)++;
+}
+/**
+ *str_handle-printsstr
+ *@count:pointer
+ *@list:args
+ */
+void str_handle(va_list list, int*count)
+{
+	const char *prnt_str= va_arg(list, const char*);
+	int get_len = 0;
+
+	while(prnt_str[get_len] != '\0')
+	{
+		get_len++;
+		(*count)++;
+	}
+	write(1, prnt_str, get_len);
+}
+/**
+ *prcnt_handle-prints%
+ *@count:pointer
+ */
+void prcnt_handle(int *count)
+{
+	write(1, "%", 1);
+	(*count)++;
+}
+/**
+ *_printf- cheeekyprintf
+ *@format: strformat
+ *Return: numofchars
  */
 int _printf(const char *format, ...)
 {
@@ -11,20 +50,20 @@ int _printf(const char *format, ...)
 
 	va_start(list, format);
 
-	while (*format != '\0')
+	while(*format != '\0')
 	{
-		if (*format == '%')
+		if(*format == '%')
 		{
 			format++;
-			switch (*format)
+			switch(*format)
 			{
-				case 'c':
+				case'c':
 					c_handle(list, &count);
 					break;
-				case 's':
+				case's':
 					str_handle(list, &count);
 					break;
-				case '%':
+				case'%':
 					prcnt_handle(&count);
 					break;
 				default:
