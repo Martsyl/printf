@@ -22,6 +22,11 @@ void str_handle(va_list list, int *count)
 	const char *prnt_str = va_arg(list, const char *);
 	int get_len = 0;
 
+	if (prnt_str == NULL)
+	{
+		prnt_str = "(null)";
+	}
+
 	while (prnt_str[get_len] != '\0')
 	{
 		get_len++;
