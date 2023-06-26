@@ -67,14 +67,16 @@ int _printf(const char *format, ...)
 					prcnt_handle(&count);
 					break;
 				default:
-					count += write(1, "%", 1);
-					count += write(1, format, 1);
+					write(1, "%", 1);
+					write(1, format, 1);
+					count += 2;
 					break;
 			}
 		}
 		else
 		{
-			count += write(1, format, 1);
+			 write(1, format, 1);
+			 count++;
 		}
 		format++;
 
