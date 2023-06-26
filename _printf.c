@@ -10,7 +10,7 @@ void c_handle(va_list list, int *count)
 	char prnt_char = va_arg(list, int);
 
 	if (prnt_char == NULL)
-		prmt_char = "(null)";
+		return (-1);
 
 	write(1, &prnt_char, 1);
 	(*count)++;
