@@ -19,7 +19,7 @@ void c_handle(va_list list, int *count)
  */
 void str_handle(va_list list, int *count)
 {
-	const char *prnt_str = va_arg(list, const char*);
+	const char *prnt_str = va_arg(list, const char *);
 	int get_len = 0;
 
 	while (prnt_str[get_len] != '\0')
@@ -57,13 +57,13 @@ int _printf(const char *format, ...)
 			format++;
 			switch (*format)
 			{
-				case'c':
+				case 'c':
 					c_handle(list, &count);
 					break;
-				case's':
+				case 's':
 					str_handle(list, &count);
 					break;
-				case'%':
+				case '%':
 					prcnt_handle(&count);
 					break;
 				default:
