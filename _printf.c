@@ -1,4 +1,5 @@
 #include"main.h"
+#include <string.h>
 /**
  *c_handle-printschar
  *@count:pointer
@@ -20,17 +21,11 @@ void c_handle(va_list list, int *count)
 void str_handle(va_list list, int *count)
 {
 	const char *prnt_str = va_arg(list, const char *);
-	int get_len = 0;
+	int get_len = strlen(prnt_str);
 
 	if (prnt_str == NULL)
 	{
 		prnt_str = "(null)";
-	}
-
-	while (prnt_str[get_len] != '\0')
-	{
-		get_len++;
-		(*count)++;
 	}
 	write(1, prnt_str, get_len);
 	*count += get_len;
