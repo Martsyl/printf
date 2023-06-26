@@ -28,9 +28,12 @@ void str_handle(va_list list, int *count)
 		prnt_str = "(null)";
 	}
 	while (prnt_str[get_len] != '\0')
+	{
 		get_len++;
+		(*count)++;
+	}
 	write(1, prnt_str, get_len);
-	(*count)++;
+	count += get_len;
 }
 /**
  *prcnt_handle-prints%
