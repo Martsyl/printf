@@ -7,7 +7,7 @@
  */
 void c_handle(va_list list, int *count)
 {
-	char prnt_char = va_arg(list, int);
+	char prnt_char = (char)va_arg(list, int);
 
 	write(1, &prnt_char, 1);
 	(*count)++;
@@ -30,9 +30,9 @@ void str_handle(va_list list, int *count)
 	while (prnt_str[get_len] != '\0')
 	{
 		get_len++;
-		(*count)++;
 	}
 	write(1, prnt_str, get_len);
+	*count += get_len;
 }
 /**
  *prcnt_handle-prints%
@@ -43,6 +43,7 @@ void prcnt_handle(int *count)
 	write(1, "%", 1);
 	(*count)++;
 }
+
 /**
  *_printf- cheeekyprintf
  *@format: strformat
