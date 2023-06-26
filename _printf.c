@@ -5,11 +5,11 @@
  *@list:arguments
  *Return:none
  */
-void c_handle(va_list list,int*count)
+void c_handle(va_list list, int *count)
 {
-	char prnt_char = va_arg(list,int);
+	char prnt_char = va_arg(list, int);
 
-	write(1, &prnt_char ,1);
+	write(1, &prnt_char, 1);
 	(*count)++;
 }
 /**
@@ -17,12 +17,12 @@ void c_handle(va_list list,int*count)
  *@count:pointer
  *@list:args
  */
-void str_handle(va_list list, int*count)
+void str_handle(va_list list, int *count)
 {
-	const char *prnt_str= va_arg(list, const char*);
+	const char *prnt_str = va_arg(list, const char*);
 	int get_len = 0;
 
-	while(prnt_str[get_len] != '\0')
+	while (prnt_str[get_len] != '\0')
 	{
 		get_len++;
 		(*count)++;
@@ -50,12 +50,12 @@ int _printf(const char *format, ...)
 
 	va_start(list, format);
 
-	while(*format != '\0')
+	while (*format != '\0')
 	{
-		if(*format == '%')
+		if (*format == '%')
 		{
 			format++;
-			switch(*format)
+			switch (*format)
 			{
 				case'c':
 					c_handle(list, &count);
