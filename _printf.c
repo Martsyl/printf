@@ -40,7 +40,7 @@ void str_handle(va_list list, int *count)
  */
 void prcnt_handle(int *count)
 {
-	write(1, "%", 1);
+	write(1, "%%", 1);
 	(*count)++;
 }
 /**
