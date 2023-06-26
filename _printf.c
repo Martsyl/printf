@@ -7,7 +7,7 @@
  */
 void c_handle(va_list list, int *count)
 {
-	char prnt_char = (char)va_arg(list, int);
+	char prnt_char = va_arg(list, int);
 
 	write(1, &prnt_char, 1);
 	(*count)++;
