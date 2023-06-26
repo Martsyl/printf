@@ -41,7 +41,7 @@ void str_handle(va_list list, int *count)
 void prcnt_handle(int *count)
 {
 	write(1, "%%", 1);
-	(*count)++;
+	/*(*count)++;*/
 }
 /**
  *_printf- cheeekyprintf
@@ -54,9 +54,7 @@ int _printf(const char *format, ...)
 	va_list list;
 
 	va_start(list, format);
-	if (!format || (format[0] == '&' && !format[1]))
-		return (-1);
-	if (format [0] == '%' && format[1] == ' ' && !format[2])
+	if (format == NULL)
 		return (-1);
 
 	while (*format != '\0')
