@@ -21,14 +21,16 @@ void c_handle(va_list list, int *count)
 void str_handle(va_list list, int *count)
 {
 	const char *prnt_str = va_arg(list, const char *);
-	int get_len = strlen(prnt_str);
+	int get_len = 0;
 
 	if (prnt_str == NULL)
 	{
 		prnt_str = "(null)";
 	}
+	while (prnt_str[get_len] != '\0')
+		get_len++;
 	write(1, prnt_str, get_len);
-	*count += get_len;
+	(*count)++;
 }
 /**
  *prcnt_handle-prints%
