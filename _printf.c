@@ -53,9 +53,9 @@ int _printf(const char *format, ...)
 	int count = 0;
 	va_list list;
 
-	va_start(list, format);
 	if (format == NULL)
 		return (-1);
+	va_start(list, format);
 
 	while (*format != '\0')
 	{
