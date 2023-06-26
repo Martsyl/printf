@@ -9,9 +9,6 @@ void c_handle(va_list list, int *count)
 {
 	char prnt_char = va_arg(list, int);
 
-	if (prnt_char == NULL)
-		return (-1);
-
 	write(1, &prnt_char, 1);
 	(*count)++;
 }
@@ -59,6 +56,8 @@ int _printf(const char *format, ...)
 	if (format == NULL)
 		return (-1);
 	va_start(list, format);
+	if (format != '%')
+		count++;
 
 	while (*format != '\0')
 	{
