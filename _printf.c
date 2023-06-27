@@ -25,7 +25,7 @@ void str_handle(va_list list, int *count)
 
 	if (prnt_str == NULL)
 	{
-		prnt_str = NULL;
+		prnt_str = ("null)";
 	}
 
 	while (prnt_str[get_len] != '\0')
@@ -41,7 +41,7 @@ void str_handle(va_list list, int *count)
  */
 void prcnt_handle(int *count)
 {
-	write(1, "%", 1);
+	write(1, "%%", 1);
 	(*count)++;
 }
 
