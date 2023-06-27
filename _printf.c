@@ -33,7 +33,7 @@ void str_handle(va_list list, int *count)
 		get_len++;
 		(*count)++;
 	}
-	write(1, prnt_str, get_len);	
+	write(1, prnt_str, get_len);
 }
 /**
  *prcnt_handle-prints%
@@ -75,7 +75,7 @@ int _printf(const char *format, ...)
 					prcnt_handle(&count);
 					break;
 				default:
-					write(1, "%", 1);
+					write(1, "%%", 1);
 					write(1, format, 1);
 					count += 2;
 					break;
