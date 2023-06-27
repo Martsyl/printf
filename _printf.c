@@ -34,7 +34,7 @@ void str_handle(va_list list, int *count)
 		(*count)++;
 	}
 	write(1, prnt_str, get_len);
-	*count += get_len
+	(*count) += get_len;
 }
 /**
  *prcnt_handle-prints%
