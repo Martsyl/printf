@@ -30,7 +30,6 @@ void str_handle(va_list list, int *count)
 	while (prnt_str[get_len] != '\0')
 	{
 		get_len++;
-		count++;
 	}
 	write(1, prnt_str, get_len);
 	(*count) += get_len;
