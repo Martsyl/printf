@@ -58,6 +58,8 @@ int _printf(const char *format, ...)
 	va_start(list, format);
 	if (format == NULL)
 		return (-1);
+	if (format == '%')
+		return (-1);
 	while (*format != '\0')
 	{
 		if (*format == '%')
