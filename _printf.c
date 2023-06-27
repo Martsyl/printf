@@ -23,10 +23,6 @@ void str_handle(va_list list, int *count)
 	const char *prnt_str = va_arg(list, const char *);
 	int get_len = 0;
 
-	if (prnt_str == NULL)
-	{
-		prnt_str = "(null)";
-	}
 	while (prnt_str[get_len] != '\0')
 	{
 		get_len++;
@@ -40,7 +36,7 @@ void str_handle(va_list list, int *count)
  */
 void prcnt_handle(int *count)
 {
-	write(1, "%%", 1);
+	write(1, "%", 1);
 	(*count)++;
 }
 
@@ -82,11 +78,10 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			 write(1, format, 1);
-			 count++;
+			write(1, format, 1);
+			count++;
 		}
 		format++;
-
 	}
 	va_end(list);
 	return (count);
