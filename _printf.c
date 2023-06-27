@@ -77,7 +77,7 @@ int _printf(const char *format, ...)
 				default:
 					write(1, "%", 1);
 					write(1, format, 1);
-					count +=1;
+					count += 2;
 					break;
 			}
 		}
