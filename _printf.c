@@ -56,9 +56,7 @@ int _printf(const char *format, ...)
 	va_list list;
 
 	va_start(list, format);
-	if (format == NULL)
-		return (-1);
-	if (format[0] == '%' && !format[1])
+	if (format == NULL || (format[0] == '%' && !format[1]))
 		return (-1);
 	while (*format != '\0')
 	{
@@ -75,6 +73,10 @@ int _printf(const char *format, ...)
 					break;
 				case '%':
 					prcnt_handle(&count);
+					break;
+				case 'd':
+				case 'i':
+					dispec(list, &count);
 					break;
 				default:
 					write(1, "%%", 1);
